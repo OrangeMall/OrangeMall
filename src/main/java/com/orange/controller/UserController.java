@@ -51,6 +51,12 @@ public class UserController {
                 return "product_list";
             }
     }
+
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
     @PostMapping("/regist")
     public String regist(User user)
     {
