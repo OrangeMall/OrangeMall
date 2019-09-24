@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+/**
+ * 产地类
+ */
 @Setter
 @Getter
 @NoArgsConstructor

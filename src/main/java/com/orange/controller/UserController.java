@@ -25,9 +25,10 @@ public class UserController {
     private PlaceServier ps;
     @Autowired
     private PackingServer pks;
+    @Autowired
    /* @PostMapping("/login")*/
     @RequestMapping(value="/login",method = {RequestMethod.GET,RequestMethod.POST})
-    public String login(User use, String username, String password, HttpSession session, Model model)
+    public String login(User user,String username, String password, HttpSession session, Model model)
     {
         if(us.selectuser(username,password)==null)
         {
@@ -37,7 +38,7 @@ public class UserController {
                 List<Place> pla=ps.selectPlace();
                 for (Place pl:pla)
                 {
-                    System.out.println(pl.getPid()+"******"+pl.getPname());
+                    System.out.println(pl.getPlid()+"******"+pl.getPlname());
                 }
                 List<Packing> pac=pks.selectpack();
                 for (Packing pk:pac)
