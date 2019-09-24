@@ -14,5 +14,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Order_detail {
     private Integer did;//订单详情ID
+    private product product; //商品
+    private User user;  //用户
+    private Integer oid;//订单ID
+    private Address addrsss; //地址
 
 }

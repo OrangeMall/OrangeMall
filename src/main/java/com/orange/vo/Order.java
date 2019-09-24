@@ -16,5 +16,5 @@ public class Order {
     private Integer oid;
     private String otime;  //下单时间
     private Integer ostatus;//订单状态
-    private Integer did;//  订单详情编号；
+    private Order_detail order_detail ;//  订单详情编号；
 }

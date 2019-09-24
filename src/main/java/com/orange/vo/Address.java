@@ -5,16 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
-/**
- * 产地类
- */
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Place implements Serializable {
-    private Integer pid;
-    private String pname;
+public class Address {
+    private Integer aid; //地址ID
+    private User user ;//用户
+    private String aname; //地址名字；
 }
