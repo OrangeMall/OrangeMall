@@ -325,15 +325,17 @@
    <div class="Filter_title"><span>品牌：</span></div>
    <div class="Filter_Entire"><a href="#">全部</a></div>
    <div class="p_f_name infonav_hidden">
-    <p><a href="#" title="莱家/Loacker">莱家/Loacker </a>  
-	<a href="#" title="">丽芝士/Richeese</a>  
+    <p>
+        <a href="#" th:each="b:${brand}" th:text="${b.bname}" ></a>
+	<!--<a href="#" title="">丽芝士/Richeese</a>
 	<a href="#" title="白色恋人/SHIROI KOIBITO ">白色恋人/SHIROI KOIBITO </a> 
 	<a href="#">爱时乐/Astick </a> 
 	<a href="#">利葡/LiPO </a> 
 	<a href="#">友谊牌/Tipo </a> 
 	<a href="#"> 三立/SANRITSU  </a>  
-	<a href="#"> 皇冠/Danisa </a>  </p>
-	 <p><a href="#">丹麦蓝罐/Kjeldsens</a>
+	<a href="#"> 皇冠/Danisa </a> -->
+    </p>
+	<!-- <p><a href="#">丹麦蓝罐/Kjeldsens</a>
 	<a href="#">茱莉/Julie's </a>  
 	<a href="#">向日葵/Sunflower </a>  
 	<a href="#">福多/fudo </a> 
@@ -364,16 +366,16 @@
        <a href="#" title="莱家/Loacker">莱家/Loacker </a>  
 	<a href="#" title="">丽芝士/Richeese</a>  
 	<a href="#" title="白色恋人/SHIROI KOIBITO ">白色恋人/SHIROI KOIBITO </a> 
-	<a href="#">爱时乐/Astick </a>  </p>
+	<a href="#">爱时乐/Astick </a>  </p>-->
 	
    </div>
-   <p class="infonav_more"><a href="#" class="more" onclick="infonav_more_down(0);return false;">更多<em class="pullup"></em></a></p>
+  <!-- <p class="infonav_more"><a href="#" class="more" onclick="infonav_more_down(0);return false;">更多<em class="pullup"></em></a></p>-->
   </div>
   <div class="Filter_list clearfix">
   <div class="Filter_title"><span>产地：</span></div>
   <div class="Filter_Entire"><a href="#">全部</a></div>
   <div class="p_f_name">
-   <a href="#" th:each="pla:${place}" th:text="${pla.pname}"></a>
+   <a href="#" th:each="pla:${place}" th:text="${pla.plname}"></a>
   <!-- <a href="#">中国台湾</a>
    <a href="#">中国香港</a>     
    <a href="#">中国澳门</a>     

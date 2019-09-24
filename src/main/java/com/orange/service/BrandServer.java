@@ -1,9 +1,9 @@
-package com.orange.dao;
+package com.orange.service;
 
 import com.orange.vo.Brand;
 
 import java.util.List;
 
-public interface BrandDao {
+public interface BrandServer {
     public List<Brand> selectbrand();
 }

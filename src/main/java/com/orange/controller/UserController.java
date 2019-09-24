@@ -1,8 +1,10 @@
 package com.orange.controller;
 
+import com.orange.service.BrandServer;
 import com.orange.service.PackingServer;
 import com.orange.service.PlaceServier;
 import com.orange.service.UserService;
+import com.orange.vo.Brand;
 import com.orange.vo.Packing;
 import com.orange.vo.Place;
 import com.orange.vo.User;
@@ -26,9 +28,12 @@ public class UserController {
     @Autowired
     private PackingServer pks;
     @Autowired
+    private BrandServer bs;
+
+
    /* @PostMapping("/login")*/
     @RequestMapping(value="/login",method = {RequestMethod.GET,RequestMethod.POST})
-    public String login(User user,String username, String password, HttpSession session, Model model)
+    public String login(User use,String username, String password, HttpSession session, Model model)
     {
         if(us.selectuser(username,password)==null)
         {
@@ -45,9 +50,14 @@ public class UserController {
                 {
                     System.out.println(pk.getPaid()+"*********"+pk.getPaname());
                 }
+                List<Brand> bra=bs.selectbrand();
+                for (Brand br:bra) {
+                    System.out.println(br.getBid()+"**********"+br.getBname());
+                }
                 System.out.println(use.getUsername()+"******"+use.getPassword());
                 model.addAttribute("place",pla);
                 model.addAttribute("packing",pac);
+                model.addAttribute("brand",bra);
                 session.setAttribute("use","use");
                 return "product_list";
             }
