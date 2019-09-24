@@ -12,14 +12,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User  implements Serializable {
-    private Integer uid;
-    private String username;
-    private String password;
-    private String sex;
-    private String email;
-    private String qq;
-    private String iphone;
-    private String heard;
-    private Integer status;
-    private Integer balance;
+    private Integer uid; //用户id
+    private String username;    //用户名
+    private String password;    //密码
+    private String sex;     //性别
+    private String email;   //邮件
+    private String qq;  //qq
+    private String iphone;  //电话
+    private String heard;   //头像
+    private Integer status;     //是否为管理员
+    private Integer balance;    //余额
 }

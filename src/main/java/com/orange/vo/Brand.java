@@ -7,11 +7,11 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Place implements Serializable {
-    private Integer plid; //产地id
-    private String plname; //产地名称
+public class Brand implements Serializable {
+    private Integer bid; //产品id
+    private String bname;//产品名称
 }

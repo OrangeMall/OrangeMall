@@ -12,6 +12,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Packing implements Serializable {
-    private Integer paid;
-    private String paname;
+    private Integer paid;   //包装id
+    private String paname;  //包装名称
 }
