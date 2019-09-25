@@ -52,7 +52,7 @@
       <div class="Collection">下午好，欢迎光临锦宏颜！<em></em><a href="#">收藏我们</a></div>
 	<div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
-	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="Registered.html" class="red">[免费注册]</a></li>
+	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red" th:text="${use.username}" style="font-size: 16px"></a> 新用户<a href="Registered.html" class="red">[免费注册]</a></li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> 
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
@@ -271,15 +271,15 @@
       <div class="hd"><em></em>今日推荐<ul></ul></div>
       <div class="bd">
        <ul>
-        <li>
-         <div class="img"><a href="#"><img src="products/Facial_Cleanser.jpg" width="120" height="120" /></a></div>
+        <li th:each="pr:${today}">
+         <div class="img"><a href="#"><img th:src="@{'products/'+${pr.filename}+'.jpg'}" width="120" height="120" /></a></div>
          <div class="pro_info">
-          <a href="#">洗颜专科 柔澈泡沫 洁面乳 120g（资生堂旗下）</a>
-          <p class="Price"><i>￥</i>231.00</p>
-          <p class="Sales">热销：<b>1234</b>件</p>
+          <a href="#" th:text="${pr.miaoshu}"></a>
+          <p class="Price">￥<i th:text="${pr.price}"></i></p>
+          <p class="Sales">热销：<b th:text="${pr.nums}"></b>件</p>
          </div>
         </li>
-        <li>
+        <!--<li>
          <div class="img"><a href="#"><img src="products/Facial_Cleanser01.jpg" width="120" height="120" /></a></div>
          <div class="pro_info">
           <a href="#">洗颜专科 柔澈泡沫 洁面乳 120g（资生堂旗下）</a>
@@ -310,7 +310,7 @@
           <p class="Price"><i>￥</i>231.00</p>
           <p class="Sales">热销：<b>1234</b>件</p>
          </div>
-        </li>
+        </li>-->
        </ul>
       </div>
       <a class="next" href="javascript:void(0)"><em class="iconfont icon-left"></em></a>
@@ -448,15 +448,15 @@
     <div class="title_name"><em></em>销量排行</div>
     <div class="ranking_list">
      <ul id="tabRank">
-      <li class="t_p on">
-      <em class="icon_ranking">1</em>
-      <dt><h3><a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a></h3></dt>
+      <li class="t_p on" th:each="n,nou:${no}">
+      <em class="icon_ranking" th:text="${nou.index+1}"></em>
+      <dt><h3><a href="#" th:text="${n.miaoshu}"></a></h3></dt>
       <dd class="clearfix">
-      <a href="#"><img src="products/p_29.jpg" width="90" height="90" /></a>
-      <span class="Price">￥23.00</span>
+      <a href="#"><img th:src="@{'products/'+${n.filename}+'.jpg'}" width="90" height="90" /></a>
+      <span class="Price">￥<span th:text="${n.price}"/> </span>
       </dd>     
       </li>
-      <li class="t_p">
+    <!--  <li class="t_p">
       <em class="icon_ranking">2</em>
       <dt><h3><a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a></h3></dt>
       <dd class="clearfix">
@@ -527,7 +527,7 @@
       <a href="#"><img src="products/p_29.jpg" width="90" height="90" /></a>
       <span class="Price">￥23.00</span>
       </dd>     
-      </li>
+      </li>-->
      </ul>
     </div>
     </div>
@@ -572,20 +572,20 @@ $(function() {
    <!--产品列表样式-->
  <div class="p_list  clearfix">
    <ul>
-    <li class="gl-item">
-    <em class="icon_special tejia"></em>
+    <li class="gl-item"  th:each="pro:${product}">
+   <!-- <em class="icon_special tejia"></em>-->
 	<div class="Borders">
-	 <div class="img"><a href="Product_Detailed.html"><img src="products/leshi.jpg" style="width:220px;height:220px"></a></div>
-	 <div class="Price"><b>¥89</b><span>[¥49.01/500g]</span></div>
-	 <div class="name"><a href="Product_Detailed.html">乐事 无限薯片三连装（原味+番茄+烤肉）104g*3/组</a></div>
-	 <div class="Review">已有<a href="#">2345</a>评论</div>
+	 <div class="img"><a href="Product_Detailed.html"><img th:src="@{'products/'+${pro.filename}+'.jpg'}" style="width:220px;height:220px"></a></div>
+	 <div class="Price">￥<b th:text="${pro.price}"></b><!--<span>[¥49.01/500g]</span>--></div>
+	 <div class="name"><a href="Product_Detailed.html" th:text="${pro.getMiaoshu()}"></a></div>
+	 <!--<div class="Review">已有<a href="#">2345</a>评论</div>-->
 	 <div class="p-operate">
 	  <a href="#" class="p-o-btn Collect"><em></em>收藏</a>
 	  <a href="#" class="p-o-btn shop_cart"><em></em>加入购物车</a>
 	 </div>
 	 </div>
 	</li>
-	<li class="gl-item">
+	<!--<li class="gl-item">
     <em class="icon_special tejia"></em>
 	<div class="Borders">
 	 <div class="img"><a href="Product_Detailed.html"><img src="products/meat.jpg" style="width:220px;height:220px"></a></div>
@@ -755,7 +755,7 @@ $(function() {
 	  <a href="#" class="p-o-btn shop_cart"><em></em>加入购物车</a>
 	 </div>
 	 </div>
-	</li>
+	</li>-->
    </ul>
    <div class="Paging">
     <div class="Pagination">

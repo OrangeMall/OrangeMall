@@ -1,13 +1,7 @@
 package com.orange.controller;
 
-import com.orange.service.BrandServer;
-import com.orange.service.PackingServer;
-import com.orange.service.PlaceServier;
-import com.orange.service.UserService;
-import com.orange.vo.Brand;
-import com.orange.vo.Packing;
-import com.orange.vo.Place;
-import com.orange.vo.User;
+import com.orange.service.*;
+import com.orange.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +23,8 @@ public class UserController {
     private PackingServer pks;
     @Autowired
     private BrandServer bs;
-
+    @Autowired
+    private ProductServer prs;
 
    /* @PostMapping("/login")*/
     @RequestMapping(value="/login",method = {RequestMethod.GET,RequestMethod.POST})
@@ -40,25 +35,41 @@ public class UserController {
             return "Login";
         }else
             {
-                List<Place> pla=ps.selectPlace();
+                List<Place> pla=ps.selectPlace();//查询产地
                 for (Place pl:pla)
                 {
                     System.out.println(pl.getPlid()+"******"+pl.getPlname());
                 }
-                List<Packing> pac=pks.selectpack();
+                List<Packing> pac=pks.selectpack();//包装方式
                 for (Packing pk:pac)
                 {
                     System.out.println(pk.getPaid()+"*********"+pk.getPaname());
                 }
-                List<Brand> bra=bs.selectbrand();
+                List<Brand> bra=bs.selectbrand();//品牌
                 for (Brand br:bra) {
                     System.out.println(br.getBid()+"**********"+br.getBname());
+                }
+                List<Product> pro=prs.selectproduct();//商品详细
+                for (Product pt:pro) {
+                    System.out.println(pt.getPrice()+"-----"+pt.getMiaoshu()+"-----"+pt.getFilename());
+                }
+                List<Product> pd=prs.selecttoday();//今日推荐
+                for (Product pc:pd) {
+                    System.out.println(pc.getPrice()+"******"+pc.getFilename()+"******"+pc.getNums()+"******"+pc.getMiaoshu());
+                }
+                List<Product> po=prs.selectno();//商品销量
+                for (Product pu:po) {
+                    System.out.println(pu.getPrice()+"******"+pu.getMiaoshu());
                 }
                 System.out.println(use.getUsername()+"******"+use.getPassword());
                 model.addAttribute("place",pla);
                 model.addAttribute("packing",pac);
                 model.addAttribute("brand",bra);
-                session.setAttribute("use","use");
+                model.addAttribute("product",pro);
+                model.addAttribute("today",pd);
+                model.addAttribute("no",po);
+                /*session.setAttribute("use","use");*/
+                model.addAttribute("use",use);
                 return "product_list";
             }
     }

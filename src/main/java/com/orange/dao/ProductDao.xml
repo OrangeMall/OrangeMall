@@ -3,5 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orange.dao.ProductDao">
-
+   <select id="selectproduct" resultType="Product">
+       SELECT * FROM `product`
+   </select>
+   <select id="selecttoday" resultType="Product">
+       SELECT * FROM `product` LIMIT 0,5
+   </select>
+    <select id="selectno" resultType="Product">
+        SELECT * FROM  product ORDER BY nums LIMIT 0,8
+    </select>
 </mapper>
