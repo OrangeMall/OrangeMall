@@ -12,4 +12,7 @@
     <select id="selectno" resultType="Product">
         SELECT * FROM  product ORDER BY nums LIMIT 0,8
     </select>
+    <select id="selectone" resultType="Product">
+        SELECT * FROM `product` WHERE pid=#{pid}
+    </select>
 </mapper>

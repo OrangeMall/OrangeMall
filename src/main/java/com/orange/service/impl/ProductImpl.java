@@ -26,4 +26,9 @@ public class ProductImpl implements ProductServer {
     public List<Product> selectno() {
         return pd.selectno();
     }
+
+    @Override
+    public Product selectone(int pid) {
+       return pd.selectone(pid);
+    }
 }

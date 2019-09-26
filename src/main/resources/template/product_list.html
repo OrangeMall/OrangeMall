@@ -575,9 +575,9 @@ $(function() {
     <li class="gl-item"  th:each="pro:${product}">
    <!-- <em class="icon_special tejia"></em>-->
 	<div class="Borders">
-	 <div class="img"><a href="Product_Detailed.html"><img th:src="@{'products/'+${pro.filename}+'.jpg'}" style="width:220px;height:220px"></a></div>
+	 <div class="img"><a th:href="@{'pictrues?pid='+${pro.pid}}"><img th:src="@{'products/'+${pro.filename}+'.jpg'}" style="width:220px;height:220px"></a></div>
 	 <div class="Price">￥<b th:text="${pro.price}"></b><!--<span>[¥49.01/500g]</span>--></div>
-	 <div class="name"><a href="Product_Detailed.html" th:text="${pro.getMiaoshu()}"></a></div>
+	 <div class="name"><a th:href="Product_Detailed.html" th:text="${pro.getMiaoshu()}"></a></div>
 	 <!--<div class="Review">已有<a href="#">2345</a>评论</div>-->
 	 <div class="p-operate">
 	  <a href="#" class="p-o-btn Collect"><em></em>收藏</a>

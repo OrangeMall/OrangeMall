@@ -8,4 +8,5 @@ public interface ProductServer {
     public List<Product> selectproduct();
     public List<Product> selecttoday();
     public List<Product> selectno();
+    public Product selectone(int pid);
 }
