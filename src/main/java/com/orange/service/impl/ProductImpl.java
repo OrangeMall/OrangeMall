@@ -1,7 +1,7 @@
 package com.orange.service.impl;
 
 import com.orange.dao.ProductDao;
-import com.orange.service.ProductServer;
+import com.orange.service.ProductService;
 import com.orange.vo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductImpl implements ProductServer {
+public class ProductImpl implements ProductService {
     @Autowired
     private ProductDao pd;
     @Override

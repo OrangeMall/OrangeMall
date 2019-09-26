@@ -275,7 +275,7 @@
          <div class="img"><a href="#"><img th:src="@{'products/'+${pr.filename}+'.jpg'}" width="120" height="120" /></a></div>
          <div class="pro_info">
           <a href="#" th:text="${pr.miaoshu}"></a>
-          <p class="Price">￥<i th:text="${pr.price}"></i></p>
+          <p class="Price"><i>￥<span th:text="${pr.price}"/></i></p>
           <p class="Sales">热销：<b th:text="${pr.nums}"></b>件</p>
          </div>
         </li>

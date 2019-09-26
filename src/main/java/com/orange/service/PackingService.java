@@ -4,6 +4,6 @@ import com.orange.vo.Packing;
 
 import java.util.List;
 
-public interface PackingServer {
+public interface PackingService {
     public List<Packing> selectpack();
 }

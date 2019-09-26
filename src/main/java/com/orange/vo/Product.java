@@ -1,9 +1,8 @@
 package com.orange.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Date;
 
 @Setter
 @Getter
@@ -19,4 +18,5 @@ public class Product {
     private Integer nums;//库存
     private String filename;//图片路劲
     private String miaoshu;//描述
+    private Date time;  //上架时间
 }

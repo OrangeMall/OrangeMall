@@ -20,11 +20,11 @@ public class UserController {
     @Autowired
     private PlaceServier ps;
     @Autowired
-    private PackingServer pks;
+    private PackingService pks;
     @Autowired
-    private BrandServer bs;
+    private BrandService bs;
     @Autowired
-    private ProductServer prs;
+    private ProductService prs;
 
    /* @PostMapping("/login")*/
     @RequestMapping(value="/login",method = {RequestMethod.GET,RequestMethod.POST})

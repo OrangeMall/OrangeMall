@@ -263,21 +263,21 @@
 		<!--产品信息-->
 		<div class="property">
 			<form action="javascript:addToCart(97)" name="ECS_FORMBUY" id="ECS_FORMBUY">
-				<h2>乐品乐茶 碧螺春2015新茶茶叶绿茶一级洞庭山明前春茶礼盒125g*2</h2>
-				<div class="goods_info">◆买即送大麦茶◆满2件减10元再赠2罐大麦茶◆礼品袋茶包免费赠◆</div>
+				<h2 th:text="${product.pname}"></h2>
+				<div class="goods_info" th:text="${product.miaoshu}"></div>
 				<div class="ProductD clearfix">
 					<div class="productDL">
-						<dl><dt>售&nbsp;&nbsp;&nbsp;&nbsp;价：</dt><dd><span id="ECS_SHOPPRICE"><i>￥</i>121.01</span><del>市场价：￥220.01</del></dd> </dl>
+						<dl><dt>售&nbsp;&nbsp;&nbsp;&nbsp;价：</dt><dd><span id="ECS_SHOPPRICE"><i>￥<span th:text="${product.price}"/></i></span></dd> </dl>
 						<dl>
 							<dt>规&nbsp;&nbsp;&nbsp;&nbsp;格：</dt>
-							<dd >
-								<div class="item  selected"><b></b><a href="#none" title="小礼盒">小礼盒</a></div>
-								<div class="item"><b></b><a href="#none" title="普通包装">普通包装</a></div>
+							<dd>
+								<div class="item  selected" th:each="pack:${packing}"><b></b><a href="#none" title="小礼盒" th:text="${pack.paname}"></a></div>
+							<!--	<div class="item"><b></b><a href="#none" title="普通包装">普通包装</a></div>
 								<div class="item"><b></b><a href="#none" title="大礼盒">大礼盒</a></div>
-								<div class="item"><b></b><a href="#none" title="铁盒装">铁盒装</a></div>
+								<div class="item"><b></b><a href="#none" title="铁盒装">铁盒装</a></div>-->
 							</dd>
 						</dl>
-						<dl><dt>上架时间：</dt><dd>2015-04-14</dd></dl>
+						<dl><dt>上架时间：</dt><dd th:text="${#dates.format(product.time,'yyyy-MM-dd')}"></dd></dl>
 					</div>
 				</div>
 				<div class="buyinfo" id="detail_buyinfo">
@@ -289,7 +289,7 @@
 								<a class="btn-add" href="javascript:;" onclick="setAmount.add('#buy-num')">+</a>
 								<input class="text" id="buy-num" value="1" onkeyup="setAmount.modify('#buy-num');">
 							</div>
-							<div class="P_Quantity">剩余：50000件</div>
+							<div class="P_Quantity">剩余：<span th:text="${product.nums}"></span>件</div>
 						</dd>
 						<dd>
 							<div class="wrap_btn"> <a href="javascript:addToCart_bak(92)" class="wrap_btn1" title="加入购物车"></a>
