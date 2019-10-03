@@ -31,4 +31,19 @@ public class ProductImpl implements ProductService {
     public Product selectone(int pid) {
        return pd.selectone(pid);
     }
+
+    @Override
+    public List<Product> selectfive() {
+        return pd.selectfive();
+    }
+
+    @Override
+    public List<Product> xiaoliang() {
+        return pd.xiaoliang();
+    }
+
+    @Override
+    public List<Product> price() {
+        return pd.price();
+    }
 }

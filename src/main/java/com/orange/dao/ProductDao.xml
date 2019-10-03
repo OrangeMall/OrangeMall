@@ -15,4 +15,13 @@
     <select id="selectone" resultType="Product">
         SELECT * FROM `product` WHERE pid=#{pid}
     </select>
+    <select id="selectfive" resultType="Product">
+        SELECT * FROM `product` LIMIT 1,5
+    </select>
+    <select id="xiaoliang" resultType="Product">
+        SELECT * FROM `product` ORDER BY nums DESC
+    </select>
+    <select id="price" resultType="Product">
+        SELECT * FROM `product` ORDER BY price
+    </select>
 </mapper>

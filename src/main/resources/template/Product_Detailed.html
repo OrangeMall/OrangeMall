@@ -349,14 +349,14 @@
 			<div class="user_Records">
 				<div class="title_name">用户浏览记录</div>
 				<ul>
-					<li>
+					<li th:each="pro:${session.prod}">
 						<a href="#">
-							<p><img src="Products/p_4.jpg" data-bd-imgshare-binded="1"></p>
-							<p class="p_name">SanmiuSunflower新苗向日葵 乳酪夹心饼干 270g 菲律宾进口</p>
+							<p><img th:src="@{'products/'+${pro.filename}+'.jpg'}" data-bd-imgshare-binded="1"></p>
+							<p class="p_name" th:text="${pro.pname}"></p>
 						</a>
-						<p><span class="p_Price"><i>￥</i>5.30</span><b>10.4</b></p>
+						<p><span class="p_Price"><i>￥</i><span th:text="${pro.price}"></span></span></p>
 					</li>
-					<li>
+				<!--	<li>
 						<a href="#">
 							<p><img src="Products/p_5.jpg" data-bd-imgshare-binded="1"></p>
 							<p class="p_name">商品名称</p>
@@ -369,7 +369,7 @@
 							<p class="p_name">商品名称</p>
 						</a>
 						<p><span class="p_Price"><i>￥</i>5.30</span><b>10.4</b></p>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 		</div>
