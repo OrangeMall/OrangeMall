@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
@@ -59,7 +59,7 @@
   </div>
   <!--顶部样式1-->
   <div id="header"  class="header page_style">
-  <div class="logo"><a href="index.html"><img src="images/logo.png" /></a></div>
+  <div class="logo"><a href="META-INF/resources/WEB-INF/index.jsp"><img src="images/logo.png" /></a></div>
   <!--结束图层-->
   <div class="Search">
     <p><input name="" type="text"  class="text"/><input name="" type="submit" value="搜 索"  class="Search_btn"/></p>
@@ -262,8 +262,8 @@
       <dt class="transaction_manage"><em class="icon_1"></em>订单中心</dt>
       <dd>
         <ul>
-          <li> <a href="User_Orderform.html"> 我的订单</a></li>
-          <li> <a href="User_address.html">收货地址</a></li>
+          <li> <a href="User_Orderform.html"  th:href="@{order}"> 我的订单</a></li>
+          <li> <a href="User_address.html" th:href="@{'address?uid='+${session.user.getUid()}}">收货地址</a></li>
           <li> <a href="user.php?act=booking_list"> 缺货登记</a></li>
         </ul>
       </dd>
@@ -317,44 +317,28 @@
           <!--地址列表-->
       <div class="Address_List clearfix"> 
         <!--地址类表-->
-           <ul class="Address_info">
+           <ul class="Address_info" th:each="ars,a:${address.list}" >
             <div class="address_title">
             <a href="#" class="modify iconfont icon-fankui btn btn-primary" title="修改信息" data-toggle="modal" id="purebox"></a>
             地址信息 
             <a href="javascript:over('0')" class="delete "><i class="iconfont icon-close2"></i></a></div>
-            <li>张婷婷</li>
-            <li>四川成都武侯区簇景横街210号3栋1单元307号。</li>
-            <li>182938596861</li>
+            <li th:text="${ars.getUname()}">张婷婷</li>
+            <li th:text="${ars.getAname()}">四川成都武侯区簇景横街210号3栋1单元307号。</li>
+            <li th:text="${ars.getPhone()}">182938596861</li>
             <li>610000</li>
            </ul>
-           <ul class="Address_info">
-            <div class="address_title">
-            <a href="#" class="modify iconfont icon-fankui btn btn-primary" title="修改信息" data-toggle="modal" id="purebox2"></a>
-            地址信息 <a href="javascript:over('0')" class="delete "><i class="iconfont icon-close2"></i></a></div>
-            <li>张婷婷</li>
-            <li>四川成都武侯区簇景横街210号3栋1单元307号。</li>
-            <li>182938596861</li>
-            <li>610000</li> 
-           </ul>
-           <ul class="Address_info">
-            <div class="address_title">
-            <a href="#" class="modify iconfont icon-fankui btn btn-primary" title="修改信息 " data-toggle="modal" id="purebox3"></a>
-            地址信息 <a href="javascript:over('0')" class="delete "><i class="iconfont icon-close2"></i></a></div>
-            <li>张婷婷</li>
-            <li>四川成都武侯区簇景横街210号3栋1单元307号。</li>
-            <li>182938596861</li>
-            <li>610000</li>
-           </ul>
-           <ul class="Address_info">
-            <div class="address_title">
-            <a href="#" class="modify iconfont icon-fankui btn btn-primary" data-toggle="modal" id="purebox4" title="修改信息"></a>
-            地址信息 <a href="javascript:over('0')" class="delete "><i class="iconfont icon-close2"></i></a></div>
-            <li>张婷婷</li>
-            <li>四川成都武侯区簇景横街210号3栋1单元307号。</li>
-            <li>182938596861</li>
-            <li>610000</li>
-           </ul>           
          </div>
+            <div class="Paging">
+                <div class="Pagination">
+                    <a href="#" th:href="@{'address?uid='+${session.user.getUid()}}">首页</a>
+                    <a href="#" class="pn-prev disabled" th:href="@{'address?uid='+${session.user.getUid()}(pageNum=${address.hasPreviousPage}?${address.prePage})}">&lt;上一页</a>
+                    <span th:each="page:${address.navigatepageNums}">
+                           <a href="#" class="on" th:text="${page}"  th:href="@{'address?uid='+${session.user.getUid()}(pageNum=${page})}" >1</a>
+                    </span>
+                    <a href="#" th:href="@{'address?uid='+${session.user.getUid()}(pageNum=${address.hasNextPage}?${address.nextPage}:${address.pages})}">下一页&gt;</a>
+                    <a href="#" th:href="@{'address?uid='+${session.user.getUid()}(pageNum=${address.pages})}">尾页</a>
+                </div>
+            </div>
         </div>
         <form>
         <div class="Add_Addresss">
@@ -489,6 +473,8 @@
 	<script src="purebox/holder/holder.js"></script>
 	<script src="purebox/google-code-prettify/prettify.js"></script>	
 	<script src="purebox/jquery.purebox.js"></script>
-	<script src="purebox/jquery.resizable.js"></script>         	
+	<script src="purebox/jquery.resizable.js"></script>
+
+
 </body>
 </html>

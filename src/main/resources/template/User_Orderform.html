@@ -1,14 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/common.css" rel="stylesheet" type="text/css"/>
 <link href="fonts/iconfont.css"  rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css/sumoselect.css" rel="stylesheet"  type="text/css"/>
-<link href="css/purebox-metro.css" rel="stylesheet" id="skin">
-<script src="js/jquery.min.1.8.2.js" type="text/javascript"></script> 
-<script src="js/jquery.sumoselect.js"></script>
+<link href="css/sumoselect.css" rel="stylesheet"  type="text/css" />
+<link href="css/purebox-metro.css" rel="stylesheet" id="skin" >
+<script src="js/jquery.min.1.8.2.js" type="text/javascript" ></script>
+<script src="js/jquery.sumoselect.js" type="text/javascript" ></script>
 <script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 <script src="js/common_js.js" type="text/javascript"></script>
 <script src="js/footer.js" type="text/javascript"></script>
@@ -24,7 +24,7 @@
 	<div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
 	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="#" class="red">[免费注册]</a></li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> 
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#" th:href="@{order}">我的订单</a></li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
 	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>
@@ -51,7 +51,7 @@
   </div>
   <!--顶部样式1-->
   <div id="header"  class="header page_style">
-  <div class="logo"><a href="index.html"><img src="images/logo.png" /></a></div>
+  <div class="logo"><a href="META-INF/resources/WEB-INF/index.jsp"><img src="images/logo.png" /></a></div>
   <!--结束图层-->
   <div class="Search">
     <p><input name="" type="text"  class="text"/><input name="" type="submit" value="搜 索"  class="Search_btn"/></p>
@@ -243,7 +243,7 @@
       <div class="background_img"></div>
       </div>
       <div class="user_name">
-       <p><span class="name">化海天堂</span><a href="#">[修改密码]</a></p>
+       <p><span class="name" th:text="${session.user.getUsername()}">化海天堂</span><a href="User_changePassword.html">[修改密码]</a></p>
        <p>访问时间：2016-1-21 10:23</p>
        </div>           
      </div>
@@ -253,8 +253,8 @@
       <dt class="transaction_manage"><em class="icon_1"></em>订单中心</dt>
       <dd>
         <ul>
-          <li> <a href="User_Orderform.html"> 我的订单</a></li>
-          <li> <a href="User_address.html">收货地址</a></li>
+          <li> <a href="User_Orderform.html" th:href="@{order}"> 我的订单</a></li>
+          <li> <a href="User_address.html" th:href="@{'address?uid='+${session.user.getUid()}}">收货地址</a></li>
           <li> <a href="user.php?act=booking_list"> 缺货登记</a></li>
         </ul>
       </dd>
@@ -303,11 +303,18 @@
      <div class="info_content">   
       <div class="title_Section"><span>订单管理</span></div>
       <div class="Order_Sort">
-        <ul>
-         <li><a href="#"><img src="images/icon-dingdan1.png"><br>代付款（2）</a></li>
-         <li><a href="#"><img src="images/icon-dingdan.png"><br>已完成（2）</a></li>
-         <li><a href="#"><img src="images/icon-kuaidi.png" <="" a=""><br>运输中（2）</a></li><a href="#">
-         </a><li class="noborder"><a href="#"></a><a href="#"><img src="images/icon-weibiaoti101.png"><br>派件中（2）</a></li>
+        <ul >
+         <li><a href="#"  th:href="@{'order?ostatus='+${session.ywc.getOstatus()}}" ><img src="images/icon-dingdan.png"><br><span th:if="${wc} ne null" th:text="${'已完成( '+wc+' )'}"  >0</span>
+             <span th:if="${wc} eq null" th:text="${'已完成( '+0+' )'}"  ></span>
+         </a></li>
+         <li>
+             <a href="#"   th:href="@{'order?ostatus='+${session.ysz.getOstatus()}}" ><img src="images/icon-kuaidi.png"><br><span th:if="${ys} ne null" th:text="${'运输中( '+ys+' )'}"  >0</span>
+                 <span th:if="${ys} eq null" th:text="${'运输中( '+0+' )'}"  ></span>
+             </a>
+         </li>
+            <li class="noborder"><a href="#"  th:href="@{'order?ostatus='+${session.pjz.getOstatus()}}" ><img src="images/icon-weibiaoti101.png"><br><span th:if="${pj} ne null"  th:text="${'派件中( '+pj+' )'}"  ></span>
+                <span th:if="${pj} eq null"  th:text="${'派件中( '+0+' )'}"  ></span>
+            </a></li>
         </ul>
       </div>
       <div class="Order_form_list">
@@ -320,163 +327,77 @@
           <td class="list_name_title5">订单状态</td>
           <td class="list_name_title6">操作</td>
          </tr></thead> 
-         <tbody>       
-           <tr class="Order_info"><td colspan="6" class="Order_form_time">下单时间：2015-12-3 | 订单号：445454654654654 <em></em></td></tr>
-           <tr class="Order_Details">
+         <tbody>
+           <tr th:each="o,oder:${order.list}" class="Order_info"><td colspan="6" class="Order_form_time" th:text="${'下单时间:'+o.otime+' | 订单号：'+o.oid}"> <em></em></td></tr>
+           <tr class="Order_Details" th:each="o,oder:${order.list}">
            <td colspan="3">
            <table class="Order_product_style">
-           <tbody><tr>
+           <tbody><tr >
            <td>
             <div class="product_name clearfix">
-            <a href="#" class="product_img"><img src="Products/p_2.jpg" width="80px" height="80px"></a>
-            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
+            <a href="#" class="product_img"><img th:src="@{'products/'+${o.order_detail.product.filename}+'.jpg'}" width="80px" height="80px"></a>
+            <a href="3" th:text="${o.order_detail.product.pname}">天然绿色多汁香甜无污染水蜜桃</a>
             <p class="specification">礼盒装20个/盒</p>
             </div>
             </td>
-            <td>5</td>
-           <td>2</td>
+            <td th:text="${o.order_detail.product.price}">5</td>
+           <td th:text="${o.order_detail.number}">2</td>
             </tr>
             </tbody></table>
            </td>   
            <td class="split_line">100</td>
-           <td class="split_line">已发货，待收货</td>
-           <td class="operating">
+           <td class="split_line"th:switch="${o.ostatus}">
+               <span th:case="2">运输中</span>
+               <span th:case="3">派件中</span>
+               <span th:case="5">已完成</span>
+           </td>
+           <td class="operating" th:switch="${o.ostatus}">
                 <a href="#">查看详细</a>
-             <a href="#">删除</a>
+             <a href="#" th:case="5">删除</a>
            </td>
            </tr>
            </tbody>
-            <tbody>       
-           <tr class="Order_info"><td colspan="6" class="Order_form_time">下单时间：2015-12-3 | 订单号：445454654654654 <em></em></td></tr>
-           <tr class="Order_Details">
-           <td colspan="3">
-             <table class="Order_product_style">
-           <tbody><tr>
-           <td>
-            <div class="product_name clearfix">
-            <a href="#" class="product_img"><img src="Products/p_11.jpg" width="80px" height="80px"></a>
-            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-            <p class="specification">礼盒装20个/盒</p>
-            </div>
-            </td>
-             <td>5</td>
-           <td>2</td>
-           </tr>
-           <tr>
-           <td>
-            <div class="product_name clearfix">
-            <a href="#" class="product_img"><img src="Products/p_3.jpg" width="80px" height="80px"></a>
-            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-            <p class="specification">礼盒装20个/盒</p>
-            </div>
-            </td>
-             <td>5</td>
-           <td>2</td>
-            </tr>
-            </tbody></table>          
-           </td>         
-           <td class="split_line">100</td>
-           <td class="split_line">已发货，待收货</td>
-           <td class="operating">
-             <a href="#">查看详细</a>
-             <a href="#">删除</a>            
-           </td>
-           </tr>
-            </tbody>
-            <tbody>       
-           <tr class="Order_info"><td colspan="6" class="Order_form_time">下单时间：2015-12-3 | 订单号：445454654654654<em></em></td></tr>
-           <tr class="Order_Details">
-           <td colspan="3">
-           <table class="Order_product_style">
-           <tbody><tr>
-           <td>
-            <div class="product_name clearfix">
-            <a href="#" class="product_img"><img src="Products/p_12.jpg" width="80px" height="80px"></a>
-            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-            <p class="specification">礼盒装20个/盒</p>
-            </div>
-            </td>
-            <td>5</td>
-           <td>2</td>
-            </tr>
-            </tbody></table>
-           </td>   
-           <td class="split_line">100</td>
-           <td class="split_line">已发货，待收货</td>
-           <td class="operating">
-                <a href="#">查看详细</a>
-             <a href="#">删除</a>
-           </td>
-           </tr>
-           </tbody>  
-             <tbody>       
-           <tr class="Order_info"><td colspan="6" class="Order_form_time">下单时间：2015-12-3 | 订单号：445454654654654<em></em></td></tr>
-           <tr class="Order_Details">
-           <td colspan="3">
-           <table class="Order_product_style">
-           <tbody><tr>
-           <td>
-            <div class="product_name clearfix">
-            <a href="#" class="product_img"><img src="Products/p_12.jpg" width="80px" height="80px"></a>
-            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-            <p class="specification">礼盒装20个/盒</p>
-            </div>
-            </td>
-            <td>5</td>
-           <td>2</td>
-            </tr>
-            </tbody></table>
-           </td>   
-           <td class="split_line">100</td>
-           <td class="split_line">已发货，待收货</td>
-           <td class="operating">
-                <a href="#">查看详细</a>
-             <a href="#">删除</a>
-           </td>
-           </tr>
-           </tbody>    
-             <tbody>       
-           <tr class="Order_info"><td colspan="6" class="Order_form_time">下单时间：2015-12-3 | 订单号：445454654654654<em></em></td></tr>
-           <tr class="Order_Details">
-           <td colspan="3">
-           <table class="Order_product_style">
-           <tbody><tr>
-           <td>
-            <div class="product_name clearfix">
-            <a href="#" class="product_img"><img src="Products/p_12.jpg" width="80px" height="80px"></a>
-            <a href="3">天然绿色多汁香甜无污染水蜜桃</a>
-            <p class="specification">礼盒装20个/盒</p>
-            </div>
-            </td>
-            <td>5</td>
-           <td>2</td>
-            </tr>
-            </tbody></table>
-           </td>   
-           <td class="split_line">100</td>
-           <td class="split_line">已发货，待收货</td>
-           <td class="operating">
-                <a href="#">查看详细</a>
-             <a href="#">删除</a>
-           </td>
-           </tr>
-           </tbody>            
+
          </table>
     </div>
       <script>jQuery(".Order_form_list").slide({titCell:".Order_info", targetCell:".Order_Details",defaultIndex:1,delayTime:300,trigger:"click",defaultPlay:false,returnDefault:false});</script>
-     </div>  
-      <div class="Paging">
-    <div class="Pagination">
-    <a href="#">首页</a>
-     <a href="#" class="pn-prev disabled">&lt;上一页</a>
-	 <a href="#" class="on">1</a>
-	 <a href="#">2</a>
-	 <a href="#">3</a>
-	 <a href="#">4</a>
-	 <a href="#">下一页&gt;</a>
-	 <a href="#">尾页</a>	
      </div>
-    </div>
+       <div class="Paging">
+           <div class="Pagination">
+               <a href="#" th:if="${pd} eq 0" th:href="@{order}" >首页</a>
+               <a href="#" th:if="${pd} eq 5" th:href="@{'order?ostatus='+${session.ywc.getOstatus()}}">首页</a>
+               <a href="#" th:if="${pd} eq 2" th:href="@{'order?ostatus='+${session.ysz.getOstatus()}}">首页</a>
+               <a href="#" th:if="${pd} eq 3" th:href="@{'order?ostatus='+${session.pjz.getOstatus()}}">首页</a>
+
+
+               <a href="#" th:if="${pd} eq 0" class="pn-prev disabled" th:href="@{'order'(pageNum=${order.hasPreviousPage}?${order.prePage})}">&lt;上一页</a>
+               <a href="#" th:if="${pd} eq 5" class="pn-prev disabled" th:href="@{'order?ostatus='+${session.ywc.getOstatus()}(pageNum=${order.hasPreviousPage}?${order.prePage})}">&lt;上一页</a>
+               <a href="#" th:if="${pd} eq 2" class="pn-prev disabled" th:href="@{'order?ostatus='+${session.ysz.getOstatus()}(pageNum=${order.hasPreviousPage}?${order.prePage})}">&lt;上一页</a>
+               <a href="#" th:if="${pd} eq 3" class="pn-prev disabled" th:href="@{'order?ostatus='+${session.pjz.getOstatus()}(pageNum=${order.hasPreviousPage}?${order.prePage})}">&lt;上一页</a>
+               <span th:if="${pd} eq 0" th:each="page:${order.navigatepageNums}">
+                           <a href="#" class="on" th:text="${page}"  th:href="@{'order'(pageNum=${page})}" >1</a>
+               </span>
+               <span th:if="${pd} eq 5" th:each="page:${order.navigatepageNums}">
+                           <a href="#" class="on" th:text="${page}"  th:href="@{'order?ostatus='+${session.ywc.getOstatus()}(pageNum=${page})}" >1</a>
+               </span>
+               <span th:if="${pd} eq 2" th:each="page:${order.navigatepageNums}">
+                           <a href="#" class="on" th:text="${page}"  th:href="@{'order?ostatus='+${session.ysz.getOstatus()}(pageNum=${page})}" >1</a>
+               </span>
+               <span th:if="${pd} eq 3" th:each="page:${order.navigatepageNums}">
+                           <a href="#" class="on" th:text="${page}"  th:href="@{'order?ostatus='+${session.pjz.getOstatus()}(pageNum=${page})}" >1</a>
+               </span>
+
+               <a href="#" th:if="${pd} eq 0" th:href="@{'order'(pageNum=${order.hasNextPage}?${order.nextPage}:${order.pages})}">下一页&gt;</a>
+               <a href="#" th:if="${pd} eq 5" th:href="@{'order?ostatus='+${session.ywc.getOstatus()}(pageNum=${order.hasNextPage}?${order.nextPage}:${order.pages})}">下一页&gt;</a>
+               <a href="#" th:if="${pd} eq 2" th:href="@{'order?ostatus='+${session.ysz.getOstatus()}(pageNum=${order.hasNextPage}?${order.nextPage}:${order.pages})}">下一页&gt;</a>
+               <a href="#" th:if="${pd} eq 3" th:href="@{'order?ostatus='+${session.pjz.getOstatus()}(pageNum=${order.hasNextPage}?${order.nextPage}:${order.pages})}">下一页&gt;</a>
+
+               <a href="#" th:if="${pd} eq 0" th:href="@{'order'(pageNum=${order.pages})}">尾页</a>
+               <a href="#" th:if="${pd} eq 5" th:href="@{'order?ostatus='+${session.ywc.getOstatus()}(pageNum=${order.pages})}">尾页</a>
+               <a href="#" th:if="${pd} eq 2" th:href="@{'order?ostatus='+${session.ysz.getOstatus()}(pageNum=${order.pages})}">尾页</a>
+               <a href="#" th:if="${pd} eq 3" th:href="@{'order?ostatus='+${session.pjz.getOstatus()}(pageNum=${order.pages})}">尾页</a>
+           </div>
+       </div>
      <!---->
      </div>    
    </div>

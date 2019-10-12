@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.dao.OrderDao">
+    <select id="selectorder" resultMap="Order_detail_product">
+        select * from `order` o inner join detail d on o.did=d.did inner join  product p on d.pid=p.pid
+    </select>
+
+    <resultMap id="Order_detail_product" type="Order" autoMapping="true">
+        <id column="oid" property="oid"></id>
+            <collection property="order_detail" ofType="Order_detail">
+                <id column="did" property="did"></id>
+                <collection property="product" ofType="Product">
+                    <id column="pid" property="pid"></id>
+                </collection>
+            </collection>
+    </resultMap>
+
+    <select id="selectosid" resultMap="Order_detail_product">
+        SELECT * FROM `order` o inner join detail d on o.did=d.did inner join  product p on d.pid=p.pid WHERE ostatus=#{osid}
+    </select>
+
+    <insert id="saveOrder" keyProperty="oid"  parameterMap="Order_detail_product" >
+        insert into `order` values (#{otime},#{ostatus},#{order_detail.did},#{total})
+    </insert>
+</mapper>

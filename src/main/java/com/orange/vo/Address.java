@@ -13,4 +13,6 @@ public class Address {
     private Integer aid; //地址ID
     private User user ;//用户
     private String aname; //地址名字；
+    private String phone;//收货电话
+    private String uname;//收货人姓名
 }

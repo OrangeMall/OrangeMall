@@ -13,8 +13,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order {
-    private Integer oid;
+    private String oid;
     private String otime;  //下单时间
     private Integer ostatus;//订单状态
     private Order_detail order_detail ;//  订单详情编号；
+    private Double total;//订单总价
 }
