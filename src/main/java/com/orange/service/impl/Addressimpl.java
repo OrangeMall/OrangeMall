@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class Addressimpl implements AddressService {
+public class AddressImpl implements AddressService {
     @Autowired
     private AddressDao ad;
+
     @Override
     public List<Address> selectaddrss(Integer uid) {
         return ad.selectaddress(uid);

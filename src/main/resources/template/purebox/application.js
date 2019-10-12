@@ -211,14 +211,14 @@ $(function(){
 	// make code pretty
 	window.prettyPrint && prettyPrint();
 	var content ='';
-	  $('.btn-primary').click(function() {		  
+	  $('.btn-primary').click(function() {
 	   $.pb({
-			 
+
 			  id : 'purebox',
 			  title : '修改地址',
 			  width:800 ,
 			  height:350,
-			  content :'<form ><div class="modify_Addresss"><ul><li class="user_Addresss"><label>配送区域</label><select class="SlectBox" placeholder="选择国家地区"><option value="国家">中国</option></select><select class="SlectBox" placeholder="选择省份"><option value="省份">省份</option></select><select class="SlectBox" placeholder="选择区域"><option value="市/区">市/区</option></select><select class="SlectBox" placeholder="选择区域"><option value="县/区">县/区</option></select></li><li class="user_Addresss"><label> 详细地址 </label><input name="" type="text" class="xi_Address Add_text"/><span>(必填)</span></li><li><label>收件人</label><input name="" type="text" class="Add_text"/><span>(必填)</span></li><li><label>电子邮箱</label><input name="" type="text" class="Add_text"/><span>(必填)</span></li><li><label>邮政编码</label><input name="" type="text" class="Add_text"/></li><li><label>固定电话</label><input name="" type="text" class="Add_text"/></li><li><label>移动手机</label><input name="" type="text" class="Add_text"/><span>(必填)</span></li><li><label>标志建筑</label><input name="" type="text" class="Add_text"/></li><li><label>送货时间</label><input name="" type="text" class="Add_text"/></li></ul></div></form>',
+			  content :'<form ><div class="modify_Addresss"><ul><li class="user_Addresss" ><label>配送区域</label><select class="SlectBox" placeholder="选择国家地区"><option value="国家">中国</option></select><select class="SlectBox" placeholder="选择省份"><option value="省份">省份</option></select><select class="SlectBox" placeholder="选择区域"><option value="市/区">市/区</option></select><select class="SlectBox" placeholder="选择区域"><option value="县/区">县/区</option></select></li><li class="user_Addresss"><label> 详细地址 </label><input name="" type="text" class="xi_Address Add_text"/><span>(必填)</span></li><li><label>收件人</label><input name="" type="text" class="Add_text"/><span>(必填)</span></li><li><label>电子邮箱</label><input name="" type="text" class="Add_text"/><span>(必填)</span></li><li><label>邮政编码</label><input name="" type="text" class="Add_text"/></li><li><label>固定电话</label><input name="" type="text" class="Add_text"/></li><li><label>移动手机</label><input name="" type="text" class="Add_text"/><span>(必填)</span></li><li><label>标志建筑</label><input name="" type="text" class="Add_text"/></li><li><label>送货时间</label><input name="" type="text" class="Add_text"/></li></ul></div></form>',
 			  onOk : suzhi
 	  })
 	  });

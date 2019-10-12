@@ -19,7 +19,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql:///orange_mall?serverTimezone=UTC
     username: root
-    password: root
+    password: 123123
 
   jackson:
     date-format: yyyy-MM-dd HH:mm
@@ -32,7 +32,7 @@ spring:
     static-path-pattern: /**
   #修改默认的静态寻址资源目录
   resources:
-    static-locations: classpath:/template/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+    static-locations: classpath:/template/,classpath:/META-INF/resources/WEB-INF/,classpath:/resources/,classpath:/static/,classpath:/public/
 
   thymeleaf:
     encoding: UTF-8
@@ -40,5 +40,4 @@ spring:
     cache: false
     prefix: classpath:/template/
     suffix: .html
-
 

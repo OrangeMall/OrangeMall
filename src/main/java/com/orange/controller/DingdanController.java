@@ -19,7 +19,7 @@ public class DingdanController {
     @RequestMapping(value="address",method = {RequestMethod.GET,RequestMethod.POST})
     public String address(int uid, Model model)
     {
-        List<Address> add=as.selectAdd(uid);
+        List<Address> add=as.selectaddrss(uid);
         for (Address ad:add) {
             System.out.println(ad.getUser().getUid()+"******"+ad.getAname());
         }
