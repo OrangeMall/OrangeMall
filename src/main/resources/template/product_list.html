@@ -54,7 +54,7 @@
 	  <ul class="clearfix">
 	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="login" class="red" style="font-size: 16px">请登录</a> 新用户<a href="Registered.html" class="red">[免费注册]</a></li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车</a> </li>
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="shopcar">购物车</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
 	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>
 	    <div class="hd_menu_list">
@@ -260,10 +260,6 @@
 </div>
 <!--产品列表样式-->
 <div class="Inside_pages clearfix">
- <!--位置-->
-<!--  <div class="Location_link">
-  <em></em><a href="#">进口食品、进口牛</a>  &lt;   <a href="#">进口饼干/糕点</a>  
- </div>-->
     <!--筛选样式-->
    <div id="Filter_style">
      <!--推荐-->
@@ -294,9 +290,18 @@
    <div class="Filter_Entire"><a href="#">全部</a></div>
    <div class="p_f_name infonav_hidden">
     <p>
-        <a href="#" th:each="b:${session.brand}" th:text="${b.bname}" ></a>
+        <a th:href="@{'move?bid='+${b.bid}}" th:each="b:${session.brand}" th:text="${b.bname}" class="brand"></a>
     </p>
-	
+	   <script type="text/javascript">
+           $(function () {
+               $(".brand ").each(function () {
+                   if($($(this))[0].href==String(window.location))
+                   {
+                       $(this).css({"background":"gray","font-size":"100%","text-align":"center"});
+                   }
+               })
+           })
+	   </script>
    </div>
   <!-- <p class="infonav_more"><a href="#" class="more" onclick="infonav_more_down(0);return false;">更多<em class="pullup"></em></a></p>-->
   </div>
@@ -304,22 +309,41 @@
   <div class="Filter_title"><span>产地：</span></div>
   <div class="Filter_Entire"><a href="#">全部</a></div>
   <div class="p_f_name">
-   <a href="#" th:each="pla:${session.place}" th:text="${pla.plname}"></a>
+   <a th:href="@{'move?plid='+${pla.plid}}" th:each="pla:${session.place}" th:text="${pla.plname}" class="place"></a>
   </div>
   </div>
+		 <script type="text/javascript">
+             $(function () {
+                 $(".place").each(function () {
+                     if($($(this))[0].href==String(window.location))
+                     {
+                         $(this).css({"background":"gray","font-size":"100%","text-align":"center"});
+                     }
+                 })
+             })
+		 </script>
   <div class="Filter_list clearfix">
   <div class="Filter_title"><span>包装方式：</span></div>
   <div class="Filter_Entire"><a href="#">全部</a></div>
   <div class="p_f_name">
-  <a href="#" th:each=" pack:${session.packing}" th:text="${pack.paname}"></a>
-     <!-- <a href="#">盒装</a><a href="#">罐装</a><a href="#">礼盒装</a><a href="#">散装(称重)</a>-->
+  <a th:href="@{'move?paid='+${pack.paid}}" th:each=" pack:${session.packing}" th:text="${pack.paname}" class="pack"></a>
   </div>
+	  <script type="text/javascript">
+		  $(function () {
+		      $(".pack").each(function () {
+				  if($($(this))[0].href==String(window.location))
+				  {
+				      $(this).css({"background":"gray","font-size":"100%","text-align":"center"});
+				  }
+              })
+          })
+	  </script>
   </div>
   <div class="Filter_list clearfix">
   <div class="Filter_title"><span>价格：</span></div>
   <div class="Filter_Entire"><a href="#">全部</a></div>
   <div class="p_f_name">
-    <a href="#">0-50</a><a href="#">50-150</a><a href="#">150-500</a><a href="#">500-1000</a><a href="#">1000以上</a>
+    <a th:href="@{'move?price='+1}" value="1">0-50</a><a th:href="@{'move?price='+2}" value="2">50-150</a><a th:href="@{'move?price='+3}" value="3">150-500</a><a th:href="@{'move?price='+4}" value="4">500-1000</a><a th:href="@{'move?price='+5}" value="5">1000以上</a>
   </div>
   </div>
  </div>
@@ -416,14 +440,26 @@ $(function() {
    </ul>
    <div class="Paging">
     <div class="Pagination">
-    <a th:href="@{/index}">首页</a>
-     <a th:href="@{/index(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="pn-prev disabled">&lt;上一页</a>
+    <a th:if="${session.num eq 1}" th:href="@{/index}">首页</a>
+	<a th:if="${session.num eq 2}" th:href="@{/sale}">首页</a>
+	<a th:if="${session.num eq 3}" th:href="@{/money}">首页</a>
+
+     <a  th:if="${session.num eq 1}" th:href="@{/index(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="pn-prev disabled">&lt;上一页</a>
+	 <a  th:if="${session.num eq 2}" th:href="@{/sale(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="pn-prev disabled">&lt;上一页</a>
+	 <a  th:if="${session.num eq 3}" th:href="@{/money(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="pn-prev disabled">&lt;上一页</a>
+
 	 <span th:each="nav:${pageInfo.navigatepageNums}">
 		 <a class="on" th:if="${nav == pageInfo.pageNum}" th:text="${nav}"></a>
 		 <a  th:href="'?pageNo='+${nav}" th:text="${nav}" th:if="${nav!=pageInfo.pageNum}"></a>
 	 </span>
-	 <a th:href="@{/index(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页&gt;</a>
-	 <a th:href="@{/index(pageNum=${pageInfo.pages})}">尾页</a>
+
+	 <a th:if="${session.num eq 1}" th:href="@{/index(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页&gt;</a>
+	 <a th:if="${session.num eq 2}" th:href="@{/sale(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页&gt;</a>
+	 <a th:if="${session.num eq 3}" th:href="@{/money(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页&gt;</a>
+
+	 <a th:if="${session.num eq 1}" th:href="@{/index(pageNum=${pageInfo.pages})}">尾页</a>
+	 <a th:if="${session.num eq 2}" th:href="@{/sale(pageNum=${pageInfo.pages})}">尾页</a>
+	 <a th:if="${session.num eq 3}" th:href="@{/money(pageNum=${pageInfo.pages})}">尾页</a>
      </div>
     </div>
    </div>

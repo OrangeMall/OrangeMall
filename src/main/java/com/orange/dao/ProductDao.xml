@@ -24,4 +24,37 @@
     <select id="price" resultType="Product">
         SELECT * FROM `product` ORDER BY price
     </select>
+
+    <!--    动态sql-->
+    <select id="move" resultType="Product">
+        SELECT * FROM `product`
+        <where>
+            <if test="bid!=null">
+                and bid=#{bid}
+            </if>
+            <if test="plid!=null">
+                and plid=#{plid}
+            </if>
+            <if test="paid!=null">
+                and paid=#{paid}
+            </if>
+            <if test="price!=null">
+                <if test="price==1">
+                    and price BETWEEN 0 AND 50
+                </if>
+                <if test="price==2">
+                    and price BETWEEN 50 AND 150
+                </if>
+                <if test="price==3">
+                    and price BETWEEN 150 AND 500
+                </if>
+                <if test="price==4">
+                    and price  BETWEEN 500 AND 1000
+                </if>
+                <if test="price==5">
+                    and price > 1000
+                </if>
+            </if>
+        </where>
+    </select>
 </mapper>

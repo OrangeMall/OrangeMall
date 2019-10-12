@@ -12,5 +12,7 @@ import lombok.Setter;
 public class Address {
     private Integer aid; //地址ID
     private User user ;//用户
-    private String aname; //地址名字；
+    private String aname; //地址名字
+    private String phone;   //收货人电话
+    private String uname;   //收获人姓名
 }

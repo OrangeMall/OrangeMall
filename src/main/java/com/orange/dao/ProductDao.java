@@ -14,4 +14,5 @@ public interface ProductDao {
     public List<Product> selectfive();
     public List<Product> xiaoliang();
     public List<Product> price();
+    public List<Product> move(Product pro);
 }

@@ -566,7 +566,7 @@ input.labelauty + label > span.labelauty-checked-image{background-image: url( ..
 .Shopping_list{ margin:20px 0px;}
 .Shopping_list .title_name{ background:#ededed; height:40px; line-height:40px; color:#333333; font-size:14px}
 .Shopping_list .title_name li{ float:left; text-align: center}
-.Shopping_list .title_name li.name{ width:440px;}
+.Shopping_list .title_name li.name{ width:500px;}
 .Shopping_list .title_name li.checkbox{ width:40px; height:40px; background: #ddd}
 .Shopping_list .title_name li.scj{width:140px;}
 .Shopping_list .title_name li.bdj{width:140px;}
@@ -577,7 +577,7 @@ input.labelauty + label > span.labelauty-checked-image{background-image: url( ..
 .table_list tr{ height:90px; border-bottom:1px solid #EFEFEF; text-align:center}
 .table_list tr.on{ background: #F1FCF3}
 .table_list .tr .img{ margin:10px; float:left; margin-right:20px;}
-.table_list .tr td.sp{ font-size:14px}
+.table_list .tr td.sp{ font-size:14px;}
 .table_list .tr img{ width:80px; height:80px; border:1px solid #ddd; padding:1px;}
 .table_list .tr .p_name{ float:left}
 .table_list .tr .p_name a{ color: #FF0000; font-family:"新宋体"}
@@ -586,14 +586,14 @@ input.labelauty + label > span.labelauty-checked-image{background-image: url( ..
 #zp_footer dl.fore a:hover,
 .leftLoop .bd ul li a:hover,
 #zp_footer .Copyright a:hover,
-.Shopping_list .table_list td.cz a:hover{ color:#FF9900}
+.Shopping_list .table_list td.cz a:hover{ color:#FF9900}bgj
 .Shopping_list .table_list td.name{ width:440px;line-height:90px;}
 .Shopping_list .table_list td.checkbox{ width:40px;}
-.Shopping_list .table_list td.scj{width:140px;}
-.Shopping_list .table_list td.bdj{width:140px;}
-.Shopping_list .table_list td.sl{width:170px;}
-.Shopping_list .table_list td.xj{width:120px; color:#FF0000; font-size:14px}
-.Shopping_list .table_list td.cz{width:120px;}
+.Shopping_list .table_list td.scj{width:180px;}
+.Shopping_list .table_list td.bdj{width:180px;}
+.Shopping_list .table_list td.sl{width:110px;}
+.Shopping_list .table_list td.xj{width:130px; color:#FF0000; font-size:14px}
+.Shopping_list .table_list td.cz{width:140px;}
 .Shopping_list .table_list td.cz a{ color: #FF0000; line-height:24px;}
 .Shopping_list .table_list .Numbers a{ 
 	font-size:20px;

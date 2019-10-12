@@ -18,5 +18,6 @@ public class Order_detail {
     private User user;  //用户
     private Integer oid;//订单ID
     private Address addrsss; //地址
+    private Integer number; //购买数量
 
 }

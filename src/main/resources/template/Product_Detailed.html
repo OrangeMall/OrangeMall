@@ -271,10 +271,8 @@
 						<dl>
 							<dt>规&nbsp;&nbsp;&nbsp;&nbsp;格：</dt>
 							<dd>
-								<div class="item  selected" th:each="pack:${packing}"><b></b><a href="#none" title="小礼盒" th:text="${pack.paname}"></a></div>
-							<!--	<div class="item"><b></b><a href="#none" title="普通包装">普通包装</a></div>
-								<div class="item"><b></b><a href="#none" title="大礼盒">大礼盒</a></div>
-								<div class="item"><b></b><a href="#none" title="铁盒装">铁盒装</a></div>-->
+								<div  class="item  selected" th:each="pack:${packing}" ><b></b><a href="#" th:text="${pack.paname}" th:value="${pack.paid}" id="button" ></a>
+								</div>
 							</dd>
 						</dl>
 						<dl><dt>上架时间：</dt><dd th:text="${#dates.format(product.time,'yyyy-MM-dd')}"></dd></dl>
@@ -285,14 +283,41 @@
 						<dt>数量</dt>
 						<dd>
 							<div class="choose-amount left">
-								<a class="btn-reduce" href="javascript:;" onclick="setAmount.reduce('#buy-num')">-</a>
-								<a class="btn-add" href="javascript:;" onclick="setAmount.add('#buy-num')">+</a>
-								<input class="text" id="buy-num" value="1" onkeyup="setAmount.modify('#buy-num');">
+								<a class="btn-reduce" id="jian" href="javascript:;" onclick="setAmount.reduce('#buy-num')">-</a>
+								<a class="btn-add" id="add" href="javascript:;" onclick="setAmount.add('#buy-num')">+</a>
+								<input class="text" id="buy-num"  value="1"   onkeyup="setAmount.modify('#buy-num');">
 							</div>
-							<div class="P_Quantity">剩余：<span th:text="${product.nums}"></span>件</div>
+							<script type="text/javascript">
+								$(function () {
+									$(".btn-add").click(function () {
+									    var add=$("#buy-num").val();
+									    var nums=$("#nums").text();
+                                            add++;
+                                            if(add==nums)
+                                        	{
+                                            alert("不能再多了！");
+                                            ("#buy-num").attr({"disabled":"disabled"});
+											("#add").attr({"disabled":"disabled"});
+                                        	}
+                                        		$("#buy-num").val(add);
+
+                                    })
+									$(".btn-reduce").click(function () {
+										var jian=$("#buy-num").val();
+										jian--;
+										if(jian==0)
+										{
+										    alert("不能再少了");
+                                            $(".text").readOnly(true);
+										}
+										$("#buy-num").val(jian);
+                                    })
+                                })
+							</script>
+							<div class="P_Quantity">剩余：<span th:text="${product.nums}" id="nums" ></span>件</div>
 						</dd>
 						<dd>
-							<div class="wrap_btn"> <a href="javascript:addToCart_bak(92)" class="wrap_btn1" title="加入购物车"></a>
+							<div class="wrap_btn"> <a id="car" href="shopcar" class="wrap_btn1" title="加入购物车"></a>
 								<a href="javascript:addToCart(92)" class="wrap_btn2" title="立即购买"></a> </div>
 						</dd>
 					</dl>
@@ -356,20 +381,6 @@
 						</a>
 						<p><span class="p_Price"><i>￥</i><span th:text="${pro.price}"></span></span></p>
 					</li>
-				<!--	<li>
-						<a href="#">
-							<p><img src="Products/p_5.jpg" data-bd-imgshare-binded="1"></p>
-							<p class="p_name">商品名称</p>
-						</a>
-						<p><span class="p_Price"><i>￥</i>5.30</span><b>10.4</b></p>
-					</li>
-					<li>
-						<a href="#">
-							<p><img src="Products/p_3.jpg" data-bd-imgshare-binded="1"></p>
-							<p class="p_name">商品名称</p>
-						</a>
-						<p><span class="p_Price"><i>￥</i>5.30</span><b>10.4</b></p>
-					</li>-->
 				</ul>
 			</div>
 		</div>
